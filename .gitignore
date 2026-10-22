@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+*.log
+references/*.pdf
+.codex-temp/
+outputs/
+# Private reference documents
+references/

@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #10273a;
+  --color-slate: #526472;
+  --color-paper: #f5f7f4;
+  --color-surface: #ffffff;
+  --color-teal: #147f82;
+  --color-teal-light: #d6ece8;
+  --color-line: #d9e0de;
+  --font-sans: "Manrope", "Aptos", "Segoe UI", sans-serif;
+  --font-display: "Newsreader", Georgia, serif;
+}
+
+@font-face { font-family: "Manrope"; src: local("Manrope"); font-display: swap; }
+@font-face { font-family: "Newsreader"; src: local("Newsreader"); font-display: swap; }
+
+:root { color-scheme: light; font-synthesis: none; }
+html { scroll-behavior: smooth; background: #f5f7f4; }
+body { margin: 0; overflow-x: hidden; background: #f5f7f4; color: #10273a; font-family: var(--font-sans); line-height: 1.6; }
+::selection { background: #b7ded8; color: #10273a; }
+button, a { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 3px solid #147f82; outline-offset: 4px; border-radius: 2px; }
+.container { width: min(1180px, calc(100% - 2rem)); margin-inline: auto; }
+.eyebrow { display: inline-flex; min-width: 0; max-width: 100%; align-items: center; gap: .65rem; color: #147f82; font-size: .72rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.eyebrow::before { content: ""; width: 1.75rem; height: 1px; background: currentColor; }
+.eyebrow > span { min-width: 0; overflow-wrap: anywhere; }
+.display { font-family: var(--font-display); font-weight: 480; letter-spacing: -.045em; line-height: .98; }
+.section-title { font-family: var(--font-display); font-weight: 480; letter-spacing: -.035em; line-height: 1.05; font-size: clamp(2.15rem, 4.2vw, 4rem); }
+.measure { max-width: 67ch; }
+.link-arrow { display: inline-flex; align-items: center; gap: .55rem; font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; }
+.link-arrow span { transition: transform .2s ease; }
+.link-arrow:hover span { transform: translateX(.3rem); }
+.rule { border-top: 1px solid #d9e0de; }
+.paper-grid { background-image: linear-gradient(to right, rgba(16,39,58,.055) 1px, transparent 1px), linear-gradient(to bottom, rgba(16,39,58,.055) 1px, transparent 1px); background-size: 42px 42px; }
+.text-balance { text-wrap: balance; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }

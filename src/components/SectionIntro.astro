@@ -1,0 +1,8 @@
+---
+interface Props { eyebrow: string; title: string; description?: string; light?: boolean; }
+const { eyebrow, title, description, light = false } = Astro.props;
+---
+<div class="grid gap-7 lg:grid-cols-[.42fr_1fr] lg:gap-14">
+  <p class:list={['eyebrow self-start', light && 'text-teal-light']}>{eyebrow}</p>
+  <div><h2 class:list={['section-title max-w-4xl', light && 'text-white']}>{title}</h2>{description && <p class:list={['mt-7 max-w-2xl text-base leading-8', light ? 'text-white/65' : 'text-slate']}>{description}</p>}</div>
+</div>

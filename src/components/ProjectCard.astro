@@ -1,0 +1,11 @@
+---
+import { ArrowUpRight } from 'lucide-astro';
+interface Props { project: { slug: string; title: string; period: string; programme: string; category: string; challenge: string; contribution: string; methods: string[]; status: string; url: string; }; index: number; }
+const { project, index } = Astro.props;
+---
+<article id={project.slug} class="group grid gap-6 border-t border-line py-8 transition-colors hover:border-teal lg:grid-cols-[70px_.8fr_1.2fr_34px] lg:items-start">
+  <span class="font-mono text-xs text-teal">{String(index + 1).padStart(2, '0')}</span>
+  <div><p class="mb-2 text-[.67rem] font-extrabold uppercase tracking-[.14em] text-slate">{project.programme} · {project.period}</p><h3 class="font-display text-3xl tracking-[-.03em]">{project.title}</h3><span class="mt-4 inline-flex rounded-full bg-teal-light/60 px-3 py-1 text-[.65rem] font-bold uppercase tracking-[.08em] text-teal">{project.status}</span></div>
+  <div><p class="text-[.62rem] font-extrabold uppercase tracking-[.12em] text-teal">Project challenge</p><p class="mt-2 text-sm font-bold leading-7 text-ink">{project.challenge}</p><p class="mt-4 text-[.62rem] font-extrabold uppercase tracking-[.12em] text-teal">My contribution</p><p class="mt-2 text-sm leading-7 text-slate">{project.contribution}</p><div class="mt-5 flex flex-wrap gap-2">{project.methods.map(method => <span class="rounded-full border border-line bg-white px-3 py-1 text-[.68rem] font-bold text-slate">{method}</span>)}</div></div>
+  <a href={project.url} target="_blank" rel="noreferrer" aria-label={`Open official ${project.title} project page`} class="grid size-8 place-items-center rounded-full border border-line transition-colors hover:border-teal hover:text-teal"><ArrowUpRight class="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" size={17}/></a>
+</article>

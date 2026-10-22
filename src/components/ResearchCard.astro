@@ -1,0 +1,9 @@
+---
+import { ArrowUpRight } from 'lucide-astro';
+interface Props { area: { number: string; slug: string; title: string; short: string; body: string; }; }
+const { area } = Astro.props;
+---
+<a href={`/research/#${area.slug}`} class="group flex min-h-[300px] flex-col border border-line bg-white p-7 no-underline transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-teal sm:p-8">
+  <div class="flex items-start justify-between"><span class="font-mono text-xs text-teal">{area.number}</span><ArrowUpRight class="text-slate transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-teal" size={19}/></div>
+  <div class="mt-auto"><h3 class="max-w-sm font-display text-[2rem] leading-[1.08] tracking-[-.035em]">{area.title}</h3><p class="mt-5 text-sm leading-7 text-slate">{area.short}</p></div>
+</a>

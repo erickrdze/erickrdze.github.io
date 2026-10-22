@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'; import PageHero from '../components/PageHero.astro'; import ProjectCard from '../components/ProjectCard.astro'; import { projects } from '../data/site';
+const orderedProjects = [...projects].sort((a, b) => a.priority - b.priority);
+---
+<BaseLayout title="Projects" description="European and national R&D contributions in optimization, intelligent mobility, and decision support.">
+  <PageHero eyebrow="Selected projects" number="03" title="My role inside collaborative R&D." intro="Specific contributions to fleet routing, transport simulation, roadworks planning, sustainable mobility, and road-safety analysis." />
+  <section class="bg-white py-20 lg:py-28"><div class="container"><div class="mb-12 grid gap-7 lg:grid-cols-[.32fr_1fr]"><p class="eyebrow">Project record</p><p class="max-w-3xl text-base leading-8 text-slate">Ongoing work appears first. Each entry separates the project’s wider challenge from the part I work on, with a link to the official project record.</p></div>{orderedProjects.map((project,index)=><ProjectCard project={project} index={index}/>)}</div></section>
+</BaseLayout>

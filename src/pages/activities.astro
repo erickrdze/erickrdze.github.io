@@ -1,0 +1,7 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'; import PageHero from '../components/PageHero.astro'; import SectionIntro from '../components/SectionIntro.astro'; import { activities } from '../data/site';
+---
+<BaseLayout title="Academic Activities" description="Awards, fellowships, international experience, academic service, and supervision by Erick Rodríguez-Esparza.">
+  <PageHero eyebrow="Academic activities" number="05" title="Research also grows through service and exchange." intro="Awards, international experience, peer review, supervision, and contributions to the research community." />
+  <section class="bg-white py-20 lg:py-28"><div class="container"><SectionIntro eyebrow="Academic record" title="Work beyond the publication list." description="A record of recognition, competitive support, international exchange, peer review, and supervision."/><div class="mt-12">{activities.map((item,index)=><article class="grid gap-5 border-t border-line py-7 lg:grid-cols-[65px_120px_.6fr_1fr]"><span class="font-mono text-xs text-teal">0{index+1}</span><div><p class="text-xs font-extrabold uppercase tracking-[.1em] text-slate">{item.year}</p><p class="mt-1 text-[.64rem] font-bold uppercase tracking-[.1em] text-teal">{item.type}</p></div><h2 class="font-display text-2xl leading-tight tracking-[-.025em]">{item.title}</h2><p class="text-sm leading-7 text-slate">{item.detail}</p></article>)}</div></div></section>
+</BaseLayout>

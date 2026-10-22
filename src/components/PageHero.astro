@@ -1,0 +1,10 @@
+---
+interface Props { eyebrow: string; title: string; intro: string; number: string; }
+const { eyebrow, title, intro, number } = Astro.props;
+---
+<section class="relative overflow-hidden border-b border-line bg-[#e9efed] py-16 lg:py-22">
+  <div class="absolute inset-y-0 right-0 w-2/5 paper-grid opacity-55"></div>
+  <div class="container relative"><div class="grid gap-9 lg:grid-cols-[.25fr_1fr_.35fr]">
+    <p class="eyebrow self-start">{eyebrow}</p><h1 class="display text-balance max-w-4xl text-5xl sm:text-6xl lg:text-[5.3rem]">{title}</h1><div class="flex flex-col justify-between gap-8 border-l border-line pl-6"><span class="font-mono text-xs text-teal">/{number}</span><p class="text-sm leading-7 text-slate">{intro}</p></div>
+  </div></div>
+</section>
