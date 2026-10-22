@@ -21,6 +21,9 @@ The source PDFs are ignored by Git and must remain development references. They 
 ## Project review
 
 - The CV spells `RESSAINANCE`; the institutional source confirms the acronym is `RENAISSANCE` and that it is Spanish national R&D, not Horizon Europe.
+- The portfolio therefore reports three Horizon Europe projects: AcceptRemote, SYNCHROMODE, and SOTERIA.
+- IZAR is an active 2026–2027 Elkartek project (KK-2026/00055), verified against DeustoTech and Vicomtech institutional pages. Its public wording follows DeustoTech's published technical scope.
+- B-Creative is presented as a University of Deusto interdisciplinary research platform, not as a Horizon Europe project.
 - TANGENT is omitted because the supplied CVs do not establish Erick's individual contribution.
 - Project wording separates the project challenge from Erick's documented contribution.
 
