@@ -7,6 +7,9 @@ interface Props { title?: string; description?: string; image?: string; }
 const { title, description = site.description, image = '/images/erick-portrait-og.jpg' } = Astro.props;
 const pageTitle = title ? `${title} | ${site.name}` : `${site.name} | AI, Optimization & Intelligent Mobility`;
 const canonical = new URL(Astro.url.pathname, site.url);
+const cloudflareAnalyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN?.trim();
+const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION?.trim();
+const analyticsEnabled = import.meta.env.PROD && Boolean(cloudflareAnalyticsToken);
 const personSchema = { '@context': 'https://schema.org', '@type': 'Person', name: site.name, url: site.url, email: `mailto:${site.email}`, jobTitle: 'Postdoctoral Researcher in Artificial Intelligence and Optimization', affiliation: { '@type': 'Organization', name: 'DeustoTech, University of Deusto' }, address: { '@type': 'PostalAddress', addressLocality: 'Bilbao', addressCountry: 'ES' }, sameAs: Object.values(site.profiles), award: 'Ignacio Ellacuría Award for Best Doctoral Thesis, 2026', knowsAbout: ['Artificial Intelligence','Computational Intelligence','Evolutionary Computation','Metaheuristic Optimization','Machine Learning','Intelligent Transportation Systems','Image Processing','Fleet Routing','Logistics Optimization','Decision Support Systems'] };
 ---
 <!doctype html>
@@ -17,15 +20,22 @@ const personSchema = { '@context': 'https://schema.org', '@type': 'Person', name
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    {googleSiteVerification && <meta name="google-site-verification" content={googleSiteVerification} />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="theme-color" content="#10273a" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={new URL(image, site.url)} />
+    <meta property="og:image:alt" content={`Portrait of ${site.name}`} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, site.url)} />
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
   </head>
   <body>
@@ -33,5 +43,13 @@ const personSchema = { '@context': 'https://schema.org', '@type': 'Person', name
     <Header />
     <main id="main"><slot /></main>
     <Footer />
+    {analyticsEnabled && (
+      <script
+        is:inline
+        type="module"
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={JSON.stringify({ token: cloudflareAnalyticsToken })}
+      ></script>
+    )}
   </body>
 </html>

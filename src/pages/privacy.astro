@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { site } from '../data/site';
+---
+<BaseLayout title="Privacy" description="Privacy information for the research portfolio of Erick Rodríguez-Esparza.">
+  <PageHero eyebrow="Privacy" number="07" title="Privacy and website analytics." intro="A concise explanation of the data used to understand site traffic and performance." />
+  <section class="bg-white py-20 lg:py-28">
+    <div class="container grid gap-10 lg:grid-cols-[.32fr_1fr] lg:gap-16">
+      <div>
+        <p class="eyebrow">Last updated</p>
+        <p class="mt-4 font-mono text-xs text-slate">26 October 2026</p>
+      </div>
+      <div class="max-w-3xl space-y-8 text-base leading-8 text-slate">
+        <div>
+          <h2 class="font-display text-3xl tracking-[-.025em] text-ink">Cloudflare Web Analytics</h2>
+          <p class="mt-4">This site uses Cloudflare Web Analytics to understand aggregate traffic and page performance. The service reports information such as page views, referring sites, approximate country, device category, and Core Web Vitals.</p>
+          <p class="mt-4">Cloudflare states that Web Analytics does not use cookies or local storage, does not fingerprint visitors, and does not track individuals across websites. This site does not use Google Analytics, advertising trackers, or visitor profiling.</p>
+        </div>
+        <div>
+          <h2 class="font-display text-3xl tracking-[-.025em] text-ink">Consent</h2>
+          <p class="mt-4">Because this implementation does not store identifiers or tracking state on your device and is used only for aggregate, privacy-focused measurement, the site does not currently display an analytics consent banner. This will be reviewed if the analytics setup or applicable guidance changes.</p>
+        </div>
+        <div>
+          <h2 class="font-display text-3xl tracking-[-.025em] text-ink">Further information</h2>
+          <p class="mt-4">For details about the service, see <a href="https://www.cloudflare.com/web-analytics/" target="_blank" rel="noreferrer">Cloudflare Web Analytics</a> and <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noreferrer">Cloudflare’s Privacy Policy</a>. Questions about this website can be sent to <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

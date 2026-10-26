@@ -18,6 +18,8 @@ npm run build
 npm run preview
 ```
 
+Copy `.env.example` to `.env.local` only when testing configuration locally. Analytics never loads during `npm run dev`; it is emitted only by production builds when a Cloudflare site token is present.
+
 ## Content architecture
 
 - Identity, profiles, metrics, research areas, projects, timeline, capabilities, and activities: `src/data/site.ts`
@@ -88,6 +90,51 @@ git push -u origin main
 ```
 
 No Astro `base` path is configured because this is a GitHub user-site repository.
+
+## Cloudflare Web Analytics
+
+The official Cloudflare JavaScript beacon is included once in `src/layouts/BaseLayout.astro`, immediately before the closing `body` tag. It is disabled unless both conditions are true:
+
+1. Astro is running a production build.
+2. `PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN` has a value.
+
+The token is a public site identifier embedded in the generated HTML, not a private API credential. Do not invent it or reuse a token from another hostname.
+
+To obtain and activate it:
+
+1. Sign in to the [Cloudflare dashboard](https://dash.cloudflare.com/).
+2. Open **Web Analytics**, select **Add a site**, and enter `erickrdze.github.io` as the hostname.
+3. Open **Manage site** and copy the `token` value from Cloudflare's JavaScript snippet.
+4. In GitHub, open `erickrdze/erickrdze.github.io` → **Settings** → **Secrets and variables** → **Actions** → **Variables**.
+5. Create a repository variable named `PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN` and paste only the token value.
+6. Trigger the existing **Deploy to GitHub Pages** workflow, either with a new authorized push or **Actions** → workflow → **Run workflow**.
+
+To access reports later, sign in to Cloudflare, open **Web Analytics**, and select the `erickrdze.github.io` site. Data can take a few minutes to appear, and blockers may prevent some visits from being measured.
+
+Cloudflare Web Analytics is configured without cookies, local storage, fingerprinting, advertising trackers, or individual visitor profiles. The public explanation is available at `/privacy/`. Based on Cloudflare's current technical documentation and the AEPD guidance concerning cookies and audience measurement, this implementation does not add a consent banner. This is an implementation assessment, not legal advice. If the measurement technology or purpose changes, reassess the privacy notice and consent requirements before deploying the change.
+
+## Google Search Console
+
+The shared layout is ready to emit Google's HTML verification meta tag when `PUBLIC_GOOGLE_SITE_VERIFICATION` is set.
+
+1. Open [Google Search Console](https://search.google.com/search-console/).
+2. Add the URL-prefix property `https://erickrdze.github.io/`.
+3. Select the **HTML tag** verification method.
+4. Copy only the value of the tag's `content` attribute.
+5. Add it in the repository's GitHub Actions **Variables** as `PUBLIC_GOOGLE_SITE_VERIFICATION`.
+6. Run the existing deployment workflow and confirm the meta tag appears in the live homepage source.
+7. Return to Search Console and select **Verify**.
+8. Submit `https://erickrdze.github.io/sitemap-index.xml` under **Sitemaps**.
+
+Keep the verification variable and meta tag in place after verification because Google checks ownership periodically. The HTML-tag method verifies this URL-prefix property; a Domain property requires DNS verification and is not applicable to the `github.io` parent domain.
+
+## SEO checks
+
+- The canonical site origin is `https://erickrdze.github.io` in `astro.config.mjs` and `src/data/site.ts`.
+- Every page receives an absolute canonical URL, description, robots directive, Open Graph metadata, Twitter card metadata, and Person structured data from `BaseLayout.astro`.
+- `@astrojs/sitemap` generates `sitemap-index.xml` during production builds.
+- `public/robots.txt` allows crawling and points to the generated sitemap index.
+- The privacy page is included automatically in the sitemap.
 
 ## Future custom domain
 

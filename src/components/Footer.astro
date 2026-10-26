@@ -16,7 +16,7 @@ import { navigation, site } from '../data/site';
     </div>
     <div class="flex flex-col gap-8 pt-8 text-xs text-white/55 lg:flex-row lg:items-end lg:justify-between">
       <div><p class="mb-1 font-bold text-white">{site.name}</p><p>{site.affiliation} · {site.location}</p></div>
-      <nav class="flex flex-wrap gap-x-5 gap-y-2" aria-label="Footer navigation">{navigation.map(item => <a class="no-underline hover:text-white" href={item.href}>{item.label}</a>)}</nav>
+      <nav class="flex flex-wrap gap-x-5 gap-y-2" aria-label="Footer navigation">{navigation.map(item => <a class="no-underline hover:text-white" href={item.href}>{item.label}</a>)}<a class="no-underline hover:text-white" href="/privacy/">Privacy</a></nav>
       <p>© {new Date().getFullYear()} {site.name}</p>
     </div>
   </div>

@@ -6,5 +6,8 @@ dist/
 references/*.pdf
 .codex-temp/
 outputs/
+.env
+.env.*
+!.env.example
 # Private reference documents
 references/

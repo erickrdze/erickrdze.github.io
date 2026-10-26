@@ -18,6 +18,9 @@ jobs:
         uses: actions/checkout@v7
       - name: Install, build, and upload site
         uses: withastro/action@v6
+        env:
+          PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN: ${{ vars.PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN }}
+          PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ vars.PUBLIC_GOOGLE_SITE_VERIFICATION }}
 
   deploy:
     needs: build
