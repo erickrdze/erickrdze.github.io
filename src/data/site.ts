@@ -51,11 +51,11 @@ export const capabilities = [
 ];
 
 export const activities = [
-  { year: '2026', type: 'Awards', title: 'Ignacio Ellacuría Award for Best Doctoral Thesis', detail: 'University of Deusto, academic year 2024/25.' },
-  { year: '2022', type: 'International experience', title: 'Research stay at NTUA', detail: 'Transportation Planning and Engineering, Athens, Greece.' },
   { year: '2021–2024', type: 'Fellowships', title: 'FPI Research Training Fellowship', detail: 'Competitive national research funding in Spain.' },
   { year: '2018–2020', type: 'Fellowships', title: 'Full MSc Fellowship · CONACYT', detail: 'Competitive national research funding in Mexico.' },
+  { year: '2026', type: 'Awards', title: 'Ignacio Ellacuría Award for Best Doctoral Thesis', detail: 'University of Deusto, academic year 2024/25.' },
   { year: 'Ongoing', type: 'Academic service', title: 'Peer review for international journals', detail: 'Reviewer for Expert Systems with Applications, IEEE Access, Knowledge-Based Systems, and Computer Methods and Programs in Biomedicine.' },
   { year: '2026', type: 'Supervision', title: 'MSc thesis supervision', detail: 'Supervised Beñat Cristóbal Bañares on hybrid RAG systems for natural-language queries over geospatial metadata.' },
   { year: '2027', type: 'Organization', title: 'EvoApplications special session', detail: 'Co-organizer of “Evolutionary Computation and Machine Learning in Humanitarian Logistics and Disaster Forecasting.”' },
+  { year: '2022', type: 'International experience', title: 'Research stay at NTUA', detail: 'Transportation Planning and Engineering, Athens, Greece.' },
 ];
