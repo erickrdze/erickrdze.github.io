@@ -1,7 +1,24 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'; import PageHero from '../components/PageHero.astro'; import SectionIntro from '../components/SectionIntro.astro'; import { activities } from '../data/site';
+const filters = ['Fellowships', 'Academic service', 'Supervision', 'Organization', 'International experience', 'Awards'];
 ---
 <BaseLayout title="Academic Activities" description="Awards, fellowships, international experience, academic service, and supervision by Erick Rodríguez-Esparza.">
   <PageHero eyebrow="Academic activities" number="05" title="Academic service, supervision, and recognition." intro="Awards, international experience, peer review, student supervision, and contributions to the research community." />
-  <section class="bg-white py-20 lg:py-28"><div class="container"><SectionIntro eyebrow="Academic record" title="Work beyond the publication list." description="A record of recognition, competitive support, international exchange, peer review, and supervision."/><div class="mt-12">{activities.map((item,index)=><article class="grid gap-5 border-t border-line py-7 lg:grid-cols-[65px_120px_.6fr_1fr]"><span class="font-mono text-xs text-teal">0{index+1}</span><div><p class="text-xs font-extrabold uppercase tracking-[.1em] text-slate">{item.year}</p><p class="mt-1 text-[.64rem] font-bold uppercase tracking-[.1em] text-teal">{item.type}</p></div><h2 class="font-display text-2xl leading-tight tracking-[-.025em]">{item.title}</h2><p class="text-sm leading-7 text-slate">{item.detail}</p></article>)}</div></div></section>
+  <section class="bg-white py-20 lg:py-28"><div class="container">
+    <SectionIntro eyebrow="Academic record" title="Work beyond the publication list." description="A record of recognition, competitive support, international exchange, peer review, organization, and supervision."/>
+    <div class="mt-12 border-b border-line pb-8">
+      <p id="activity-filter-status" class="mb-5 text-xs text-slate" aria-live="polite">Showing all {activities.length} activities</p>
+      <div class="flex flex-wrap gap-2" aria-label="Academic activity filters">
+        <button class="activity-filter rounded-full bg-ink px-4 py-2 text-xs font-bold text-white" data-filter="all" aria-pressed="true">All</button>
+        {filters.map(filter=><button class="activity-filter rounded-full border border-line px-4 py-2 text-xs font-bold hover:border-teal" data-filter={filter} aria-pressed="false">{filter}</button>)}
+      </div>
+    </div>
+    <div>{activities.map((item,index)=><article data-activity data-type={item.type} class="grid gap-5 border-t border-line py-7 lg:grid-cols-[65px_120px_.6fr_1fr]"><span class="font-mono text-xs text-teal">{String(index+1).padStart(2,'0')}</span><div><p class="text-xs font-extrabold uppercase tracking-[.1em] text-slate">{item.year}</p><p class="mt-1 text-[.64rem] font-bold uppercase tracking-[.1em] text-teal">{item.type}</p></div><h2 class="font-display text-2xl leading-tight tracking-[-.025em]">{item.title}</h2><p class="text-sm leading-7 text-slate">{item.detail}</p></article>)}</div>
+  </div></section>
+  <script>
+    const buttons=document.querySelectorAll<HTMLButtonElement>('.activity-filter');
+    const records=document.querySelectorAll<HTMLElement>('[data-activity]');
+    const status=document.querySelector('#activity-filter-status');
+    buttons.forEach(button=>button.addEventListener('click',()=>{const filter=button.dataset.filter;let visible=0;records.forEach(item=>{item.hidden=filter!=='all'&&item.dataset.type!==filter;if(!item.hidden)visible++;});buttons.forEach(item=>{item.classList.remove('bg-ink','text-white');item.setAttribute('aria-pressed','false')});button.classList.add('bg-ink','text-white');button.setAttribute('aria-pressed','true');if(status)status.textContent=filter==='all'?`Showing all ${visible} activities`:`Showing ${visible} ${visible===1?'activity':'activities'} in ${filter}`;}));
+  </script>
 </BaseLayout>
