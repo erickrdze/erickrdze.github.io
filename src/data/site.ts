@@ -12,11 +12,11 @@ export const navigation = [
 ];
 
 export const highlights = [
-  { value: '671', label: 'Citations' }, { value: '9', label: 'h-index' }, { value: '9', label: 'Journal articles' }, { value: '3', label: 'Horizon Europe projects' },
+  { value: '680', label: 'Citations' }, { value: '9', label: 'h-index' }, { value: '9', label: 'Journal articles' }, { value: '3', label: 'Horizon Europe projects' },
 ];
 
 export const researchAreas = [
-  { number: '01', slug: 'optimization', title: 'Evolutionary Computation & Optimization', short: 'Search methods for problems where the solution space is large, uncertain, or shaped by competing objectives.', body: 'My work covers evolutionary algorithms, metaheuristics, hyper-heuristics, Bayesian optimization, reinforcement learning, and operator balance, with applications in routing, scheduling, image processing, and engineering.' },
+  { number: '01', slug: 'optimization', title: 'Evolutionary Computation & Optimization', short: 'Search methods for problems where the solution space is large, uncertain, or shaped by competing objectives.', body: 'My work covers evolutionary algorithms, metaheuristics, hyper-heuristics, Bayesian optimization, reinforcement learning, and adaptive operator selection, with applications in routing, scheduling, image processing, and engineering.' },
   { number: '02', slug: 'ai-ml', title: 'Artificial Intelligence & Machine Learning', short: 'Models designed not only to predict, but to support decisions that can be examined and improved.', body: 'I work with predictive modeling, explainable AI, deep learning, image analysis, and data preparation in transport and biomedical applications.' },
   { number: '03', slug: 'mobility', title: 'Intelligent Mobility & Transportation', short: 'Planning transport services around changing demand, disruptions, safety, and day-to-day constraints.', body: 'Current applications include dynamic fleet routing, demand-responsive transport, parcel logistics, roadworks planning, traffic simulation, transport modeling, and geospatial safety analysis.' },
   { number: '04', slug: 'software', title: 'Research Software & Applied Innovation', short: 'Building the software needed to run experiments, compare alternatives, and share results with project teams.', body: 'I develop optimization pipelines, simulation workflows, experimental prototypes, and scenario evaluations for multidisciplinary R&D projects.' },
