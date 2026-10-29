@@ -5,6 +5,7 @@ year: 2020
 venue: "Expert Systems with Applications, 155, 113428"
 type: "Journal article"
 doi: "https://doi.org/10.1016/j.eswa.2020.113428"
+project: "Master's research"
 area: "Biomedical image processing"
 featured: true
 verified: true

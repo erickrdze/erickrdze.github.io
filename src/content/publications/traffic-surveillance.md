@@ -5,6 +5,7 @@ year: 2024
 venue: "IEEE Access, 12, 29503–29524"
 type: "Journal article"
 doi: "https://doi.org/10.1109/ACCESS.2024.3369039"
+project: "PhD research"
 area: "Image processing"
 featured: true
 verified: true
