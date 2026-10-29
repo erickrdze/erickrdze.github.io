@@ -1,77 +1,55 @@
 ---
-import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
+import { ArrowDown, ArrowRight, MapPin } from 'lucide-astro';
 import portrait from '../assets/erick-portrait.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionIntro from '../components/SectionIntro.astro';
-import ResearchCard from '../components/ResearchCard.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import { ArrowDown, ArrowRight, ArrowUpRight, MapPin, Network, Route, Braces, ChartNoAxesCombined } from 'lucide-astro';
-import { capabilities, developments, highlights, projects, researchAreas, site } from '../data/site';
-const icons = [Route, Network, ChartNoAxesCombined, Braces];
-const selectedPublications = (await getCollection('publications')).filter(p => p.data.verified && p.data.featured).sort((a,b) => b.data.year - a.data.year).slice(0, 5);
-const orderedProjects = [...projects].sort((a, b) => a.priority - b.priority);
+import { developments, highlights, scholarMetrics, site } from '../data/site';
+
+const milestones = [
+  { year: '2026', title: 'Best Doctoral Thesis Award', detail: 'Ignacio Ellacuría Award · University of Deusto.' },
+  { year: '2024', title: 'PhD in Engineering', detail: 'Cum Laude · International Mention.' },
+  { year: '2022', title: 'International research stay', detail: 'National Technical University of Athens.' },
+];
 ---
 <BaseLayout>
   <section class="relative overflow-hidden border-b border-line bg-paper">
     <div class="absolute inset-y-0 right-0 hidden w-1/2 paper-grid opacity-55 lg:block"></div>
-    <div class="container relative grid min-h-[650px] min-w-0 items-stretch lg:grid-cols-[1.05fr_.95fr]">
+    <div class="container relative grid min-w-0 items-stretch lg:min-h-[590px] lg:grid-cols-[1.05fr_.95fr]">
       <div class="flex min-w-0 flex-col justify-center py-14 pr-0 sm:py-16 lg:py-20 lg:pr-14">
-        <p class="eyebrow mb-6"><span>Postdoctoral researcher in AI & optimization</span></p>
+        <p class="eyebrow mb-6"><span>AI &amp; optimization researcher · European R&amp;D</span></p>
         <h1 class="display max-w-full text-[clamp(3.5rem,5.6vw,5.2rem)]">Erick<span class="mt-1 block text-[.72em] text-teal sm:whitespace-nowrap">Rodríguez-Esparza</span></h1>
-        <p class="mt-6 max-w-xl font-display text-2xl leading-tight tracking-[-.02em] text-ink sm:text-3xl">AI and optimization for mobility, logistics, and transport planning.</p>
-        <p class="mt-4 max-w-2xl text-sm leading-7 text-slate">At DeustoTech, I design algorithms and research software for dynamic fleet routing, roadworks scheduling, transport safety, and related planning problems. My work combines methodological research with implementation and evaluation in collaborative R&D projects.</p>
+        <p class="mt-6 max-w-xl font-display text-2xl leading-tight tracking-[-.02em] text-ink sm:text-3xl">From intelligent algorithms to real-world applications.</p>
+        <p class="mt-4 max-w-2xl text-sm leading-7 text-slate">I am a researcher in artificial intelligence and optimization, developing computational methods and research software for complex decision-making problems. My work bridges scientific research and practical applications across mobility, logistics, and other engineering domains.</p>
         <div class="mt-7 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap">
-          <a href="#work" class="inline-flex items-center gap-3 rounded-full bg-ink px-6 py-3 text-xs font-extrabold uppercase tracking-[.08em] text-white no-underline transition-colors hover:bg-teal">Explore my work <ArrowDown size={15}/></a>
+          <a href="/projects/" class="inline-flex items-center gap-3 rounded-full bg-ink px-6 py-3 text-xs font-extrabold uppercase tracking-[.08em] text-white no-underline transition-colors hover:bg-teal">Explore my work <ArrowDown size={15}/></a>
           <a href="/contact/" class="inline-flex items-center gap-3 rounded-full border border-ink px-6 py-3 text-xs font-extrabold uppercase tracking-[.08em] no-underline transition-colors hover:bg-white">Get in touch <ArrowRight size={15}/></a>
         </div>
       </div>
-      <div class="relative min-h-[430px] overflow-hidden border-x border-line bg-[#dfe7e8] sm:min-h-[500px] lg:min-h-[620px]">
-        <Image src={portrait} alt="Erick Rodríguez-Esparza outdoors" widths={[520, 720, 960]} sizes="(min-width: 1024px) 46vw, 100vw" format="webp" quality={84} loading="eager" class="absolute inset-0 h-full w-full origin-bottom-right scale-[1.14] object-cover object-[62%_90%] lg:scale-[1.28] lg:object-[62%_100%]" />
+      <div class="relative min-h-[400px] overflow-hidden border-x border-line bg-[#dfe7e8] sm:min-h-[480px] lg:min-h-[590px]">
+        <Image src={portrait} alt="Erick Rodríguez-Esparza outdoors" widths={[520, 720, 960]} sizes="(min-width: 1024px) 46vw, 100vw" format="webp" quality={84} loading="eager" class="absolute inset-0 h-full w-full origin-bottom-right scale-[1.14] object-cover object-[62%_90%] lg:scale-[1.24] lg:object-[62%_100%]" />
         <div class="pointer-events-none absolute inset-5 border border-white/40"></div>
         <div class="absolute bottom-0 left-0 flex items-center gap-3 bg-ink px-5 py-4 text-[.68rem] font-bold uppercase tracking-[.1em] text-white"><MapPin size={14} class="text-teal-light"/> Bilbao · Spain</div>
       </div>
     </div>
   </section>
 
-  <section class="border-b border-line bg-white">
-    <div class="container grid grid-cols-2 md:grid-cols-4">{highlights.map(item => <div class="border-b border-line px-4 py-5 first:pl-0 even:border-l md:border-b-0 md:border-l md:px-7"><strong class="font-display text-3xl font-medium text-ink">{item.value}</strong><span class="ml-2 text-[.65rem] font-bold uppercase tracking-[.1em] text-slate">{item.label}</span></div>)}</div>
-    <div class="container pb-4 text-right text-[.62rem] text-slate">Google Scholar metrics as of 28 September 2026 · <a href={site.profiles.scholar} target="_blank" rel="noreferrer" class="font-bold text-teal">View profile</a></div>
+  <section class="border-b border-line bg-[#edf4f1] py-16 lg:py-20">
+    <div class="container">
+      <SectionIntro eyebrow="Research snapshot" title="Research in intelligent optimization, from algorithms to applications." description="I connect evolutionary computation and metaheuristics with artificial intelligence, simulation-based optimization, and research software for applied decision support." />
+      <div class="mt-12 grid gap-8 border-t border-line pt-8 lg:grid-cols-[.32fr_1fr] lg:gap-14">
+        <p class="text-base leading-8 text-slate">My work moves between methodological research and implementation: framing the problem, designing algorithms, developing the software, and evaluating alternatives with domain specialists.</p>
+        <div><p class="text-base leading-8 text-slate">The applications change across projects, but the aim is consistent: build computational methods that can be examined, reproduced, and used in real settings.</p><a href="/research/" class="link-arrow mt-6 text-teal">More about my research <span>→</span></a></div>
+      </div>
+      <div class="mt-14 border-y border-line"><div class="grid grid-cols-2 md:grid-cols-4">{highlights.map(item => <div class="border-b border-line px-4 py-5 first:pl-0 even:border-l md:border-b-0 md:border-l md:px-7"><strong class="font-display text-3xl font-medium text-ink">{item.value}</strong><span class="ml-2 text-[.65rem] font-bold uppercase tracking-[.1em] text-slate">{item.label}</span></div>)}</div><div class="py-3 text-right text-[.62rem] text-slate">Google Scholar metrics as of {scholarMetrics.asOf} · <a href={site.profiles.scholar} target="_blank" rel="noreferrer" class="font-bold text-teal">View profile</a></div></div>
+      <div class="mt-12 grid gap-8 lg:grid-cols-[.32fr_1fr] lg:gap-14"><div><p class="eyebrow">Academic milestones</p><p class="mt-5 max-w-xs text-sm leading-7 text-slate">Recognition, training, and international experience that shape the research.</p></div><div class="grid gap-0 md:grid-cols-3">{milestones.map(item => <article class="border-t border-line py-6 md:border-l md:border-t-0 md:px-7"><p class="font-mono text-xs text-teal">{item.year}</p><h3 class="mt-5 font-display text-2xl leading-tight">{item.title}</h3><p class="mt-3 text-xs leading-6 text-slate">{item.detail}</p></article>)}</div></div>
+    </div>
   </section>
 
-  <section class="py-20 lg:py-28"><div class="container">
-    <SectionIntro eyebrow="About" title="Research built around concrete problems." description="I begin by understanding the system, its constraints, and the decision that needs to be made. I then design and test methods suited to that setting." />
-    <div class="mt-12 grid gap-8 border-t border-line pt-9 lg:grid-cols-[.32fr_1fr] lg:gap-14"><div class="font-mono text-xs text-slate">PhD · 2024<br/>Cum Laude · International Mention</div><div class="grid gap-7 md:grid-cols-2"><p class="text-base leading-8 text-slate">My current research focuses on optimization and AI for mobility, logistics, and transport planning. My background in biomedical engineering and image analysis also allows me to apply these methods in other technical domains.</p><div><p class="text-base leading-8 text-slate">I work across the full research process: problem formulation, algorithm design, software development, experimental evaluation, and communication with project partners.</p><a href="/about/" class="link-arrow mt-6">Read my profile <span>→</span></a></div></div></div>
+  <section class="bg-ink py-20 text-white lg:py-24"><div class="container">
+    <SectionIntro eyebrow="Applied developments" title="Selected technical developments." description="Examples of optimization methods implemented as software, simulation workflows, and planning tools." light />
+    <div class="mt-12 grid lg:grid-cols-3">{developments.map(item => <article class="group flex min-h-[365px] flex-col border border-white/15 p-7"><span class="font-mono text-xs text-teal-light">{item.number}</span><h3 class="mt-10 font-display text-3xl leading-[1.08] tracking-[-.03em]">{item.title}</h3><div class="mt-7 space-y-4 text-sm leading-6"><p><strong class="text-white">Problem.</strong> <span class="text-white/65">{item.problem}</span></p><p><strong class="text-white">Approach.</strong> <span class="text-white/65">{item.approach}</span></p><p><strong class="text-white">My role.</strong> <span class="text-white/65">{item.contribution}</span></p></div><a href={item.href} class="link-arrow mt-auto pt-8 text-teal-light">{item.application} <span>→</span></a></article>)}</div>
   </div></section>
 
-  <section id="work" class="bg-[#edf1ef] py-20 lg:py-28"><div class="container">
-    <SectionIntro eyebrow="Research focus" title="Four areas that shape my work." description="Optimization is the core of my research, supported by machine learning, transport modelling, image analysis, and scientific software." />
-    <div class="mt-12 grid sm:grid-cols-2">{researchAreas.map((area, i) => { const Icon = icons[i]; return <div class="relative"><ResearchCard area={area}/><Icon class="pointer-events-none absolute right-8 top-14 text-teal/25" size={40} stroke-width={1}/></div>; })}</div>
-  </div></section>
-
-  <section class="bg-white py-20 lg:py-28"><div class="container">
-    <SectionIntro eyebrow="Selected projects" title="Collaborative projects and my contribution to them." description="The work covers fleet rerouting, roadworks planning, industrial AI, sustainable mobility, and road-safety analysis." />
-    <div class="mt-12">{orderedProjects.map((project, index) => <ProjectCard project={project} index={index}/>)}</div>
-    <a href="/projects/" class="link-arrow mt-6">Explore project case studies <span>→</span></a>
-  </div></section>
-
-  <section class="border-t border-line bg-[#f0f3f1] py-20 lg:py-28"><div class="container">
-    <SectionIntro eyebrow="Applied developments" title="Selected technical developments." description="Three examples of optimization methods implemented as software, simulation workflows, and planning tools." />
-    <div class="mt-12 grid lg:grid-cols-3">{developments.map(item => <article class="group flex min-h-[390px] flex-col border border-line bg-white p-7"><span class="font-mono text-xs text-teal">{item.number}</span><h3 class="mt-10 font-display text-3xl leading-[1.08] tracking-[-.03em]">{item.title}</h3><div class="mt-7 space-y-4 text-sm leading-6"><p><strong class="text-ink">Problem.</strong> <span class="text-slate">{item.problem}</span></p><p><strong class="text-ink">Approach.</strong> <span class="text-slate">{item.approach}</span></p><p><strong class="text-ink">My role.</strong> <span class="text-slate">{item.contribution}</span></p></div><a href={item.href} class="link-arrow mt-auto pt-8 text-teal">{item.application} <span>→</span></a></article>)}</div>
-  </div></section>
-
-  <section class="bg-ink py-20 text-white lg:py-28"><div class="container">
-    <SectionIntro eyebrow="Technical practice" title="Methods, applications, and tools." description="I combine optimization methods, domain knowledge, and research software to produce results that can be reproduced and discussed with project partners." light />
-    <div class="mt-12 grid border-t border-white/15 lg:grid-cols-3">{capabilities.map((group, index) => <article class="border-b border-white/15 py-8 lg:border-b-0 lg:border-r lg:px-8 lg:first:pl-0"><span class="font-mono text-xs text-teal-light">0{index + 1}</span><h3 class="mt-8 font-display text-3xl tracking-[-.03em]">{group.title}</h3><ul class="mt-6 grid list-disc gap-2 pl-4 text-sm text-white/65 marker:text-teal-light">{group.items.map(item => <li>{item}</li>)}</ul></article>)}</div>
-    <a href="/research/#software" class="link-arrow mt-9 text-teal-light">See technical capabilities <span>→</span></a>
-  </div></section>
-
-  <section class="py-20 lg:py-28"><div class="container">
-    <SectionIntro eyebrow="Selected publications" title="Work across optimization, mobility, and biomedical imaging." description="A selection of peer-reviewed journal articles and international conference papers." />
-    <div class="mt-12">{selectedPublications.map((pub, index) => <article class="grid gap-5 border-t border-line py-7 md:grid-cols-[55px_1fr_110px_30px] md:items-start"><span class="font-mono text-xs text-teal">0{index+1}</span><div><p class="text-[.65rem] font-extrabold uppercase tracking-[.12em] text-teal">{pub.data.type} · {pub.data.area}</p><h3 class="mt-2 font-display text-2xl leading-tight tracking-[-.025em]">{pub.data.title}</h3><p class="mt-2 text-xs leading-6 text-slate">{pub.data.venue}</p></div><span class="text-sm font-bold">{pub.data.year}</span>{pub.data.doi && <a href={pub.data.doi} target="_blank" rel="noreferrer" aria-label="Open publication DOI" class="hover:text-teal"><ArrowUpRight size={18}/></a>}</article>)}</div>
-    <a href="/publications/" class="link-arrow mt-7">View complete bibliography <span>→</span></a>
-  </div></section>
-
-  <section class="border-y border-line bg-white py-16 lg:py-20"><div class="container grid gap-10 lg:grid-cols-[.32fr_1fr]"><div><p class="eyebrow">Academic milestones</p><p class="mt-5 max-w-xs text-sm leading-7 text-slate">Training, recognition, and international experience that shape the research.</p></div><div class="grid gap-0 md:grid-cols-3"><article class="border-t border-line py-6 md:border-l md:border-t-0 md:px-7"><p class="font-mono text-xs text-teal">2026</p><h3 class="mt-5 font-display text-2xl leading-tight">Best Doctoral Thesis Award</h3><p class="mt-3 text-xs leading-6 text-slate">Ignacio Ellacuría Award · University of Deusto.</p></article><article class="border-t border-line py-6 md:border-l md:border-t-0 md:px-7"><p class="font-mono text-xs text-teal">2024</p><h3 class="mt-5 font-display text-2xl leading-tight">PhD in Engineering</h3><p class="mt-3 text-xs leading-6 text-slate">Outstanding Cum Laude · International Mention.</p></article><article class="border-t border-line py-6 md:border-l md:border-t-0 md:px-7"><p class="font-mono text-xs text-teal">2022</p><h3 class="mt-5 font-display text-2xl leading-tight">International research stay</h3><p class="mt-3 text-xs leading-6 text-slate">National Technical University of Athens.</p></article></div></div></section>
-  <section class="border-t border-line bg-[#e6efec] py-20 lg:py-24"><div class="container grid gap-10 lg:grid-cols-[1fr_.55fr] lg:items-end"><div><p class="eyebrow mb-6">Collaboration</p><h2 class="display text-balance max-w-4xl text-5xl sm:text-6xl">Interested in working <span class="italic text-teal">together?</span></h2></div><div><p class="text-sm leading-7 text-slate">I welcome research collaborations and R&D proposals in optimization, intelligent mobility, logistics, and decision support.</p><a href="/contact/" class="mt-7 inline-flex items-center gap-3 rounded-full bg-ink px-6 py-3 text-xs font-extrabold uppercase tracking-[.08em] text-white no-underline hover:bg-teal">Start a conversation <ArrowRight size={15}/></a></div></div></section>
+  <section class="border-t border-line bg-paper py-20 lg:py-24"><div class="container grid gap-10 lg:grid-cols-[1fr_.55fr] lg:items-end"><div><p class="eyebrow mb-6">Collaboration</p><h2 class="display max-w-4xl text-5xl sm:text-6xl">Interested in <span class="italic text-teal">collaborating?</span></h2></div><div><p class="text-sm leading-7 text-slate">I welcome collaborations in artificial intelligence, computational intelligence, optimization, and applied R&amp;D, including scientific research, European projects, and technology development.</p><a href="/contact/" class="mt-7 inline-flex items-center gap-3 rounded-full bg-ink px-6 py-3 text-xs font-extrabold uppercase tracking-[.08em] text-white no-underline hover:bg-teal">Get in touch <ArrowRight size={15}/></a></div></div></section>
 </BaseLayout>

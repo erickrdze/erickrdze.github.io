@@ -4,6 +4,7 @@ authors: ["Bernardo Morales-Castañeda", "Erick Rodríguez-Esparza", "Diego Oliv
 year: 2023
 venue: "IEEE Congress on Evolutionary Computation (CEC), Chicago, USA"
 type: "Conference paper"
+doi: "https://doi.org/10.1109/CEC53210.2023.10254167"
 area: "Evolutionary computation"
 featured: false
 verified: true

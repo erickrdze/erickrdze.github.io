@@ -4,6 +4,7 @@ authors: ["Bernardo Morales-Castañeda", "Erick Rodríguez-Esparza", "Diego Oliv
 year: 2024
 venue: "28th International Conference on Knowledge-Based and Intelligent Information & Engineering Systems (KES), Seville, Spain"
 type: "Conference paper"
+doi: "https://doi.org/10.1016/j.procs.2024.09.579"
 area: "Evolutionary computation"
 featured: false
 verified: true

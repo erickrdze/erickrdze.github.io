@@ -4,6 +4,7 @@ authors: ["Erick Rodríguez-Esparza", "Evangelos Kampitakis", "Antonio D. Masego
 year: 2023
 venue: "8th International Conference on Models and Technologies for Intelligent Transportation Systems (MT-ITS), Nice, France"
 type: "Conference paper"
+doi: "https://doi.org/10.1109/MT-ITS56129.2023.10241703"
 area: "Urban freight & logistics"
 featured: false
 verified: true

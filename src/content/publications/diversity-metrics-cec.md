@@ -4,6 +4,7 @@ authors: ["Erick Rodríguez-Esparza", "Bernardo Morales-Castañeda", "Iñaki Ara
 year: 2025
 venue: "IEEE Congress on Evolutionary Computation (CEC), Hangzhou, China"
 type: "Conference paper"
+doi: "https://doi.org/10.1109/CEC65147.2025.11043022"
 area: "Evolutionary computation"
 featured: true
 verified: true
